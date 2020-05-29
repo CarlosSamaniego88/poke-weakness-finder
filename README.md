@@ -3,8 +3,14 @@ A simple webscraping project to search and find a specific pokemon's weaknesses
 
 Install virtualenv if you don't have it:
 
+macOS/Linux:
 ``
-pip install virtualenv
+python3 -m pip install --user virtualenv
+``
+
+Windows:
+``
+py -m pip install --user virtualenv
 ``
 
 Create an Environment with the following commands:
