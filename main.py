@@ -51,7 +51,9 @@ def main():
             for row in rows:
                 if i < 5:
                     target_column = row.find_all('td', 'type-fx-cell type-fx-200')
+                    target_column2 = row.find_all('td', 'type-fx-cell type-fx-400')
                     weaknesses_html.append(target_column)    
+                    weaknesses_html.append(target_column2)
                     i+= 1
     
         for item in weaknesses_html:
@@ -64,13 +66,16 @@ def main():
         for weakness in weaknesses_html:
             for inner in weakness:
                 inner = str(inner)
-                left_item = inner.replace('<td class="type-fx-cell type-fx-200" title="','')
-                right_item = left_item.replace(' = super-effective">2</td>','')
-                #print(right_item)
-                item_array = right_item.split()
-                #print(item_array)
-                poke_weaknesses.append(item_array[0])
-        print('WEAKNESSES:')
+                if '200' in inner:
+                    left_item = inner.replace('<td class="type-fx-cell type-fx-200" title="','')
+                    right_item = left_item.replace(' = super-effective">2</td>','')
+                    item_array = right_item.split()
+                    poke_weaknesses.append(item_array[0])
+                elif '400' in inner:
+                    left_item = inner.replace('<td class="type-fx-cell type-fx-400" title="','')
+                    right_item = left_item.replace(' = super=effective">4</td>','')
+                    item_array = right_item.split()
+                    poke_weaknesses.append(item_array[0]+' ultra')
 
         weak_color_dict = {
             'Normal':colors.fg.darkgrey,
@@ -93,9 +98,17 @@ def main():
             'Fairy':colors.fg.pink
             
         }
-
-        for weakness in poke_weaknesses:
-            print(weak_color_dict[weakness], weakness)
+        if len(poke_weaknesses) == 0:
+            print('{} has no weaknesses!!!!!'.format(pokemon_to_exploit).upper())
+        else:
+            print('WEAKNESSES: ')
+            for weakness in poke_weaknesses:
+                if 'ultra' in weakness:
+                    weakness = weakness.split()
+                    weakness = weakness[0]
+                    print(weak_color_dict[weakness], weakness, colors.fg.lightgrey, '(ultra)')
+                else:
+                    print(weak_color_dict[weakness], weakness)
 
     elif response.status_code == 404:
         print('Pokemon Not Found. Try Again')
