@@ -3,23 +3,22 @@ from bs4 import BeautifulSoup
 from colors import colors
 from get_weaknesses import *
 
-def main():
-    pokemon_to_exploit = input('Enter a Pokemon for its weaknesses:\n')
-    exceptions = {"farfetch'd": "farfetchd", "sirfetch'd":"sirfetchd",
-                  "mr.mime": "mr-mime", "mime jr.":"mime-jr",
-                  "type: null": "type-null", "tapu koko":"tapu-koko",
-                  "tapu lele":"tapu-lele", "tapu bulu": "tapu-bulu",
-                  "tapu fini": "tapu-fini"
-                 }
+exceptions = {"farfetch'd": "farfetchd", "sirfetch'd":"sirfetchd",
+              "mr.mime": "mr-mime", "mime jr.":"mime-jr",
+              "type: null": "type-null", "tapu koko":"tapu-koko",
+              "tapu lele":"tapu-lele", "tapu bulu": "tapu-bulu",
+              "tapu fini": "tapu-fini"
+             }
 
-    weak_color_dict = {'Normal':colors.fg.darkgrey,'Fire':colors.fg.lightred,'Water':colors.fg.cyan,
-                       'Electric':colors.fg.yellow,'Grass':colors.fg.green,'Ice':colors.fg.cyan,
-                       'Fighting':colors.fg.red,'Poison':colors.fg.purple,'Ground':colors.fg.orange,
-                       'Flying':colors.fg.cyan,'Psychic':colors.fg.pink,'Bug':colors.fg.lightgreen,
-                       'Rock':colors.fg.orange,'Ghost':colors.fg.blue,'Dragon':colors.fg.blue,
-                       'Dark':colors.fg.darkgrey,'Steel':colors.fg.darkgrey,'Fairy':colors.fg.pink
-                      }
- 
+weak_color_dict = {'Normal':colors.fg.darkgrey,'Fire':colors.fg.lightred,'Water':colors.fg.cyan,
+                   'Electric':colors.fg.yellow,'Grass':colors.fg.green,'Ice':colors.fg.cyan,
+                   'Fighting':colors.fg.red,'Poison':colors.fg.purple,'Ground':colors.fg.orange,
+                   'Flying':colors.fg.cyan,'Psychic':colors.fg.pink,'Bug':colors.fg.lightgreen,
+                   'Rock':colors.fg.orange,'Ghost':colors.fg.blue,'Dragon':colors.fg.blue,
+                   'Dark':colors.fg.darkgrey,'Steel':colors.fg.darkgrey,'Fairy':colors.fg.pink
+                   }
+
+def exploit_pokemon(pokemon_to_exploit):
     for pokemon in exceptions:
         if pokemon == pokemon_to_exploit:
             pokemon_to_exploit = exceptions[pokemon_to_exploit]
@@ -62,6 +61,19 @@ def main():
 
     elif response.status_code == 404:
         print('Pokemon Not Found. Try Again')
-    
+
+def main():
+    print('', colors.fg.lightgrey)
+    print('WELCOME TO POKEMON WEAKNESS FINDER', colors.fg.lightred)
+    print('Type ctrl-c to exit', colors.fg.lightgrey)
+    print('', colors.fg.lightgrey)
+    try:
+        while True:
+            pokemon_to_exploit = input('Enter a Pokemon for its weaknesses:\n')
+            exploit_pokemon(pokemon_to_exploit)
+            print('',colors.fg.lightgrey)
+    except KeyboardInterrupt:
+        print('interrupted!')
+
 if __name__ == '__main__':
     main() 
