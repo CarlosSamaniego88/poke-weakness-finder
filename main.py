@@ -1,39 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
-class colors:
-    reset='\033[0m'
-    bold='\033[01m'
-    disable='\033[02m'
-    underline='\033[04m'
-    reverse='\033[07m'
-    strikethrough='\033[09m'
-    invisible='\033[08m'
-    class fg:
-        black='\033[30m'
-        red='\033[31m'
-        green='\033[32m'
-        orange='\033[33m'
-        blue='\033[34m'
-        purple='\033[35m'
-        cyan='\033[36m'
-        lightgrey='\033[37m'
-        darkgrey='\033[90m'
-        lightred='\033[91m'
-        lightgreen='\033[92m'
-        yellow='\033[93m'
-        lightblue='\033[94m'
-        pink='\033[95m'
-        lightcyan='\033[96m'
-    class bg:
-        black='\033[40m'
-        red='\033[41m'
-        green='\033[42m'
-        orange='\033[43m'
-        blue='\033[44m'
-        purple='\033[45m'
-        cyan='\033[46m'
-        lightgrey='\033[47m'
+from colors import colors
 
 def main():
     pokemon_to_exploit = input('Enter a Pokemon for its weaknesses:\n')
@@ -77,27 +44,13 @@ def main():
                     item_array = right_item.split()
                     poke_weaknesses.append(item_array[0]+' ultra')
 
-        weak_color_dict = {
-            'Normal':colors.fg.darkgrey,
-            'Fire':colors.fg.red,
-            'Water':colors.fg.cyan,
-            'Electric':colors.fg.yellow,
-            'Grass':colors.fg.green,
-            'Ice':colors.fg.cyan,
-            'Fighting':colors.fg.lightred,
-            'Poison':colors.fg.purple,
-            'Ground':colors.fg.orange,
-            'Flying':colors.fg.cyan,
-            'Psychic':colors.fg.pink,
-            'Bug':colors.fg.lightgreen,
-            'Rock':colors.fg.orange,
-            'Ghost':colors.fg.blue,
-            'Dragon':colors.fg.blue,
-            'Dark':colors.fg.darkgrey,
-            'Steel':colors.fg.darkgrey,
-            'Fairy':colors.fg.pink
-            
-        }
+        weak_color_dict = {'Normal':colors.fg.darkgrey,'Fire':colors.fg.lightred,'Water':colors.fg.cyan,
+                           'Electric':colors.fg.yellow,'Grass':colors.fg.green,'Ice':colors.fg.cyan,
+                           'Fighting':colors.fg.red,'Poison':colors.fg.purple,'Ground':colors.fg.orange,
+                           'Flying':colors.fg.cyan,'Psychic':colors.fg.pink,'Bug':colors.fg.lightgreen,
+                           'Rock':colors.fg.orange,'Ghost':colors.fg.blue,'Dragon':colors.fg.blue,
+                           'Dark':colors.fg.darkgrey,'Steel':colors.fg.darkgrey,'Fairy':colors.fg.pink}
+
         if len(poke_weaknesses) == 0:
             print('{} has no weaknesses!!!!!'.format(pokemon_to_exploit).upper())
         else:
