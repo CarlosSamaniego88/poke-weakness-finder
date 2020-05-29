@@ -5,8 +5,12 @@ from get_weaknesses import *
 
 def main():
     pokemon_to_exploit = input('Enter a Pokemon for its weaknesses:\n')
-    url = 'https://pokemondb.net/pokedex/' + pokemon_to_exploit
-    response = requests.get(url)
+    exceptions = {"farfetch'd": "farfetchd", "sirfetch'd":"sirfetchd",
+                  "mr.mime": "mr-mime", "mime jr.":"mime-jr",
+                  "type: null": "type-null", "tapu koko":"tapu-koko",
+                  "tapu lele":"tapu-lele", "tapu bulu": "tapu-bulu",
+                  "tapu fini": "tapu-fini"
+                 }
 
     weak_color_dict = {'Normal':colors.fg.darkgrey,'Fire':colors.fg.lightred,'Water':colors.fg.cyan,
                        'Electric':colors.fg.yellow,'Grass':colors.fg.green,'Ice':colors.fg.cyan,
@@ -15,6 +19,29 @@ def main():
                        'Rock':colors.fg.orange,'Ghost':colors.fg.blue,'Dragon':colors.fg.blue,
                        'Dark':colors.fg.darkgrey,'Steel':colors.fg.darkgrey,'Fairy':colors.fg.pink
                       }
+ 
+    for pokemon in exceptions:
+        if pokemon == pokemon_to_exploit:
+            pokemon_to_exploit = exceptions[pokemon_to_exploit]
+            url = 'https://pokemondb.net/pokedex/' + pokemon_to_exploit
+            response = requests.get(url) 
+        else:
+            pass
+
+    if pokemon_to_exploit == 'nidoran':
+        m_or_f = input('Male or Female? (m/f):\n')
+        if m_or_f == 'm':
+            url = 'https://pokemondb.net/pokedex/nidoran-m'
+            response = requests.get(url)
+        
+        elif m_or_f == 'f':
+            url = 'https://pokemondb.net/pokedex/nidoran-f'
+            response = requests.get(url)
+
+    else:
+        url = 'https://pokemondb.net/pokedex/' + pokemon_to_exploit
+        response = requests.get(url)
+
     print('')
 
     weaknesses = []
