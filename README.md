@@ -10,7 +10,7 @@ pip install virtualenv
 Create an Environment with the following commands:
 
 ``
-python3 -m venv name_of_env
+python3 -m venv env
 ``
 
 and to activate (in the poke-weakness-folder)
