@@ -1,4 +1,4 @@
-# Pokemon Weakness Finder
+# Pokémon Weakness Finder
 A simple webscraping project to search and find a specific pokemon's weaknesses
 
 Install virtualenv if you don't have it:
