@@ -1,5 +1,5 @@
 # Pokémon Weakness Finder
-A simple webscraping project to search and find a specific pokemon's weaknesses
+A webscraping project so that I don't have to constantly google pokemon's weaknesses when playing pokemon :) 
 
 _____________________________________________________
 
