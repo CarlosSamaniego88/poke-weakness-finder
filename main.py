@@ -72,6 +72,7 @@ def main():
             pokemon_to_exploit = input('Enter a Pokemon for its weaknesses:\n')
             exploit_pokemon(pokemon_to_exploit)
             print('',colors.fg.lightgrey)
+            print('------------------------------------------------')
     except KeyboardInterrupt:
         print('interrupted!')
 
