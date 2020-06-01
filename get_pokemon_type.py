@@ -40,6 +40,7 @@ def get_pokemon_type(searched_pokemon):
                         a_nature = table.find('a', {'class':nature}).text
                         pokemon_nature.append(a_nature)
         
+        print("{} TYPING:".format(searched_pokemon).upper())
         for nature in pokemon_nature:
             print(weak_color_dict[nature], nature)
 

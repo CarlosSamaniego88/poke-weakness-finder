@@ -14,7 +14,6 @@ def main():
         while True:
             pokemon_to_exploit = input('Enter a Pokemon for its weaknesses:\n')
             print('')
-            print("{} TYPING:".format(pokemon_to_exploit).upper())
             get_pokemon_type(pokemon_to_exploit)
             print('', colors.fg.lightgrey)
             exploit_pokemon(pokemon_to_exploit)
