@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from colors import colors
 from get_weaknesses import *
+from get_pokemon_type import *
 
 exceptions = {"farfetch'd": "farfetchd", "sirfetch'd":"sirfetchd",
               "mr.mime": "mr-mime", "mime jr.":"mime-jr",
@@ -59,17 +60,21 @@ def exploit_pokemon(pokemon_to_exploit):
                 else:
                     print(weak_color_dict[weakness], weakness)
 
-    elif response.status_code == 404:
-        print('Pokemon Not Found. Try Again')
+    #elif response.status_code == 404:
+    #    print('Pokemon Not Found. Try Again')
 
 def main():
     print('', colors.fg.lightgrey)
     print('WELCOME TO POKEMON WEAKNESS FINDER', colors.fg.lightred)
-    print('Type ctrl-c to exit', colors.fg.lightgrey)
+    print('Type CTRL-C to exit', colors.fg.lightgrey)
     print('', colors.fg.lightgrey)
     try:
         while True:
             pokemon_to_exploit = input('Enter a Pokemon for its weaknesses:\n')
+            print('')
+            print("{} TYPING:".format(pokemon_to_exploit).upper())
+            get_pokemon_type(pokemon_to_exploit)
+            print('', colors.fg.lightgrey)
             exploit_pokemon(pokemon_to_exploit)
             print('',colors.fg.lightgrey)
             print('------------------------------------------------')
