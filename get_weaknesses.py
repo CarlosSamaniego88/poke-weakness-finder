@@ -21,7 +21,6 @@ def get_weaknesses(response):
         if item == []:
             weaknesses_html.remove(item)
         else:
-            #item = item.replace('<td class="type-fx-cell type-fx-200" title=','')
             pass
     poke_weaknesses = []
     for weakness in weaknesses_html:

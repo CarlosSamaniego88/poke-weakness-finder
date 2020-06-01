@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 from colors import colors
-import re
 
 weak_color_dict = {'Normal':colors.fg.darkgrey,'Fire':colors.fg.lightred,'Water':colors.fg.cyan,
                    'Electric':colors.fg.yellow,'Grass':colors.fg.green,'Ice':colors.fg.cyan,
@@ -10,7 +9,6 @@ weak_color_dict = {'Normal':colors.fg.darkgrey,'Fire':colors.fg.lightred,'Water'
                    'Rock':colors.fg.orange,'Ghost':colors.fg.blue,'Dragon':colors.fg.blue,
                    'Dark':colors.fg.darkgrey,'Steel':colors.fg.darkgrey,'Fairy':colors.fg.pink
                    }
-
 
 def get_pokemon_type(searched_pokemon):
     url = 'https://pokemondb.net/pokedex/' + searched_pokemon
@@ -39,7 +37,6 @@ def get_pokemon_type(searched_pokemon):
             if 'type-icon' in row:
                 for nature in type_classes:
                     if nature in row:
-                        #print(table.find('a', {'class':nature}).text)
                         a_nature = table.find('a', {'class':nature}).text
                         pokemon_nature.append(a_nature)
         
@@ -48,10 +45,3 @@ def get_pokemon_type(searched_pokemon):
 
     elif response.status_code == 404:
         print('Pokemon Not Found. Try Again')
-
-def main():
-    searched_pokemon = input("Find this pokemon's type:\n")
-    get_pokemon_type(searched_pokemon)
-
-if __name__ == '__main__':
-    main() 
